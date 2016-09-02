@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{90224BC7-77C6-4CAF-B2DD-45C6214E2707}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>WebinarCodeStrategies1</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\WebinarCodeStrategies1Page.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\MailValidationBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Employee.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\EmployeeDirectory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\PositionToColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\EmployeeVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\WebinarCodeStrategies1Page.xaml.cs">
+      <DependentUpon>WebinarCodeStrategies1Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Database\SQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\DatabaseManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\ByteArrayToImageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PhotoManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Database\" />
+  </ItemGroup>
+</Project>

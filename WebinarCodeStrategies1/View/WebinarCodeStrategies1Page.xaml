@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:WebinarCodeStrategies1" x:Class="WebinarCodeStrategies1.WebinarCodeStrategies1Page">
+<ContentPage.Resources>
+		<ResourceDictionary>
+			<local:PositionToColorConverter x:Key="MyColorCvt" />
+			<local:ByteArrayToImageConverter x:Key="MyImageCvt" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	<StackLayout Padding="0,30,0,0">
+		<Button Text="Cargar directorio" Command="{Binding LoadDirectoryCommand}" />
+		<Button Text="Tomar foto" Command="{Binding TakePhotoCommand}" />
+		
+		<StackLayout BindingContext="{Binding SelectedEmployee}">
+			<Image HeightRequest="200" Source="{Binding Photo, Converter={StaticResource MyImageCvt}}" />
+			<Label Text="Nombre" />
+			<Entry Text="{Binding Name, Mode=TwoWay}" />
+			<Label Text="E-Mail" />
+			<Entry Text="{Binding Email, Mode=TwoWay}">
+				<Entry.Behaviors>
+					<local:MailValidationBehavior x:Name="emailValidation" />
+				</Entry.Behaviors>
+			</Entry>
+			<Label Text="Puesto" TextColor="{Binding Position, Converter={StaticResource MyColorCvt}}" />
+			<Entry Text="{Binding Position, Mode=OneWay}" />
+		</StackLayout>
+	</StackLayout>
+</ContentPage>
