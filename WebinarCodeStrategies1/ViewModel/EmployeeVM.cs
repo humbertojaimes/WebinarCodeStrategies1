@@ -99,10 +99,20 @@ namespace WebinarCodeStrategies1
 
 		async void TakePhoto()
 		{
-
 			var photo = await PhotoManager.TakePhoto();
-			SelectedEmployee.Photo = photo;
-			databaseManager.SaveValue<Employee>(SelectedEmployee);
+			using (MemoryStream stream = new MemoryStream(photo))
+			{
+				var scores = await EmotionManager.EmotionManager.GetAverage(stream);
+				var highestEmotion =  EmotionManager.EmotionManager.GetHighestEmotion(scores);
+				if (highestEmotion.Item1 != EmotionManager.EmotionManager.EmotionType.Happiness)
+					throw new Exception("La persona no esta feliz :/ ");
+			
+				if(highestEmotion.Item1 == EmotionManager.EmotionManager.EmotionType.Happiness &&
+				   highestEmotion.Item2 < 70)
+					throw new Exception("La persona no esta suficientemente feliz :(");
+				SelectedEmployee.Photo = photo;
+				databaseManager.SaveValue<Employee>(SelectedEmployee);
+			}
 		}
 	}
 }
